@@ -4,550 +4,370 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="theme-color" content="#dc2626">
-    
-    <!-- PWA iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Bee'Auto">
-    <meta name="mobile-web-app-capable" content="yes">
     
-    <!-- Manifest PWA inline -->
-    <link rel="manifest" href='data:application/manifest+json,{"name":"Bee%27Auto%20Devis","short_name":"Bee%27Auto","description":"Générateur%20de%20devis%20premium%20pour%20auto-école","start_url":"./","display":"standalone","background_color":"%23ffffff","theme_color":"%23dc2626","orientation":"portrait","icons":[{"src":"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Crect%20width%3D%22512%22%20height%3D%22512%22%20rx%3D%2280%22%20fill%3D%22%23dc2626%22%2F%3E%3Cpath%20d%3D%22M256%20100c-40%200-72%2032-72%2072v40c0%2040%2032%2072%2072%2072s72-32%2072-72v-40c0-40-32-72-72-72zm0%2040c18%200%2032%2014%2032%2032v40c0%2018-14%2032-32%2032s-32-14-32-32v-40c0-18%2014-32%2032-32zM150%20320c-20%200-36%2016-36%2036v20c0%2020%2016%2036%2036%2036h212c20%200%2036-16%2036-36v-20c0-20-16-36-36-36H150zm0%2020h212c9%200%2016%207%2016%2016v20c0%209-7%2016-16%2016H150c-9%200-16-7-16-16v-20c0-9%207-16%2016-16z%22%20fill%3D%22white%22%2F%3E%3Ctext%20x%3D%22256%22%20y%3D%22420%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2260%22%20font-weight%3D%22bold%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3EBee%27Auto%3C%2Ftext%3E%3C%2Fsvg%3E","sizes":"512x512","type":"image/svg+xml","purpose":"any maskable"}]}'>
+    <!-- Manifest PWA Inline -->
+    <link rel="manifest" href='data:application/manifest+json,{"name":"Bee%27Auto%20Devis","short_name":"Bee%27Auto","start_url":"./","display":"standalone","background_color":"%23ffffff","theme_color":"%23dc2626","icons":[{"src":"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Crect%20width%3D%22512%22%20height%3D%22512%22%20rx%3D%2280%22%20fill%3D%22%23dc2626%22%2F%3E%3Ccircle%20cx%3D%22256%22%20cy%3D%22256%22%20r%3D%22140%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%2240%22%2F%3E%3Cpath%20d%3D%22M180%20256h152M256%20180v152M190%20190l132%20132M322%20190L190%20322%22%20stroke%3D%22white%22%20stroke-width%3D%2230%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E","sizes":"512x512"}]}'>
+    <link rel="apple-touch-icon" href='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Crect%20width%3D%22512%22%20height%3D%22512%22%20rx%3D%2280%22%20fill%3D%22%23dc2626%22%2F%3E%3Ccircle%20cx%3D%22256%22%20cy%3D%22256%22%20r%3D%22140%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%2240%22%2F%3E%3Cpath%20d%3D%22M180%20256h152M256%20180v152M190%20190l132%20132M322%20190L190%20322%22%20stroke%3D%22white%22%20stroke-width%3D%2230%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E'>
     
-    <!-- Favicon et Apple Touch Icon -->
-    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Crect%20width%3D%22512%22%20height%3D%22512%22%20rx%3D%2280%22%20fill%3D%22%23dc2626%22%2F%3E%3Cpath%20d%3D%22M256%20100c-40%200-72%2032-72%2072v40c0%2040%2032%2072%2072%2072s72-32%2072-72v-40c0-40-32-72-72-72zm0%2040c18%200%2032%2014%2032%2032v40c0%2018-14%2032-32%2032s-32-14-32-32v-40c0-18%2014-32%2032-32zM150%20320c-20%200-36%2016-36%2036v20c0%2020%2016%2036%2036%2036h212c20%200%2036-16%2036-36v-20c0-20-16-36-36-36H150zm0%2020h212c9%200%2016%207%2016%2016v20c0%209-7%2016-16%2016H150c-9%200-16-7-16-16v-20c0-9%207-16%2016-16z%22%20fill%3D%22white%22%2F%3E%3Ctext%20x%3D%22256%22%20y%3D%22420%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2260%22%20font-weight%3D%22bold%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3EBee%27Auto%3C%2Ftext%3E%3C%2Fsvg%3E'>
-    <link rel="apple-touch-icon" href='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Crect%20width%3D%22512%22%20height%3D%22512%22%20rx%3D%2280%22%20fill%3D%22%23dc2626%22%2F%3E%3Cpath%20d%3D%22M256%20100c-40%200-72%2032-72%2072v40c0%2040%2032%2072%2072%2072s72-32%2072-72v-40c0-40-32-72-72-72zm0%2040c18%200%2032%2014%2032%2032v40c0%2018-14%2032-32%2032s-32-14-32-32v-40c0-18%2014-32%2032-32zM150%20320c-20%200-36%2016-36%2036v20c0%2020%2016%2036%2036%2036h212c20%200%2036-16%2036-36v-20c0-20-16-36-36-36H150zm0%2020h212c9%200%2016%207%2016%2016v20c0%209-7%2016-16%2016H150c-9%200-16-7-16-16v-20c0-9%207-16%2016-16z%22%20fill%3D%22white%22%2F%3E%3Ctext%20x%3D%22256%22%20y%3D%22420%22%20font-family%3D%22Arial%2C%20sans-serif%22%20font-size%3D%2260%22%20font-weight%3D%22bold%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%3EBee%27Auto%3C%2Ftext%3E%3C%2Fsvg%3E'>
+    <title>Bee'Auto - Devis</title>
     
-    <title>Bee'Auto - Générateur de Devis</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- html2pdf.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
     <style>
-        * {
-            -webkit-tap-highlight-color: transparent;
-        }
+        /* Polices définies en CSS standard pour compatibilité mobile garantie */
+        .font-playfair { font-family: 'Playfair Display', 'Times New Roman', serif; }
+        .font-montserrat { font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif; }
+        .font-greatvibes { font-family: 'Great Vibes', 'Brush Script MT', cursive; }
         
-        html, body {
-            overscroll-behavior: none;
-            -webkit-overflow-scrolling: touch;
-        }
+        * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
+        body { overscroll-behavior: none; font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif; }
         
         .a4-page {
             width: 210mm;
             min-height: 297mm;
             background: white;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             margin: 0 auto;
             position: relative;
             overflow: hidden;
         }
         
+        /* Ajustement mobile pour l'aperçu A4 */
+        @media (max-width: 768px) {
+            .a4-wrapper {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding: 10px 0;
+                display: flex;
+                justify-content: center;
+            }
+            .a4-page {
+                transform: scale(0.45);
+                transform-origin: top center;
+                margin-bottom: -160mm; /* Compense l'espace vide du scale */
+            }
+        }
+
         .red-accent { color: #dc2626; }
         .bg-red { background-color: #dc2626; }
         .border-red { border-color: #dc2626; }
-        .gold-accent { color: #d4af37; }
-        .bg-gold { background-color: #d4af37; }
-        .border-gold { border-color: #d4af37; }
         
-        .signature-font {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.8rem;
-            color: #0f172a;
-            line-height: 1.2;
-        }
-        .signature-line {
-            width: 220px;
-            height: 2px;
-            background: linear-gradient(90deg, #dc2626 0%, #0f172a 100%);
-            margin-bottom: 0.5rem;
-        }
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+        .signature-font { font-family: 'Great Vibes', 'Brush Script MT', cursive; font-size: 2.8rem; color: #0f172a; }
+        .signature-line { width: 220px; height: 2px; background: linear-gradient(90deg, #dc2626 0%, #0f172a 100%); margin-bottom: 0.5rem; }
         
-        .input-premium {
-            transition: all 0.3s ease;
-        }
-        .input-premium:focus {
-            border-color: #dc2626;
-            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
-            outline: none;
-        }
-        .info-box {
-            background-color: #f8fafc;
-            border-left: 3px solid #dc2626;
-        }
+        .input-premium { transition: all 0.3s ease; }
+        .input-premium:focus { border-color: #dc2626; box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15); outline: none; }
         
-        .tarif-option {
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .tarif-option:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        .tarif-option input[type="radio"] {
-            display: none;
-        }
-        .tarif-option.selected {
-            border-color: #dc2626;
-            background: linear-gradient(135deg, #fef2f2 0%, #ffffff 100%);
-            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2);
-        }
-        .tarif-option.selected .tarif-label {
-            color: #dc2626;
-        }
-        .tarif-badge {
-            background: #dc2626;
-            color: white;
-            font-size: 0.65rem;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        /* Logo Bee'Auto Premium */
         .logo-beeauto {
-            width: 64px;
-            height: 64px;
+            width: 56px; height: 56px;
             background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 8px 24px rgba(220, 38, 38, 0.3);
-            position: relative;
-            overflow: hidden;
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
         }
-        .logo-beeauto::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-            transform: rotate(45deg);
-            animation: shine 3s infinite;
-        }
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-        .logo-beeauto svg {
-            width: 40px;
-            height: 40px;
-            z-index: 1;
-        }
-        
-        /* Boutons d'action flottants */
-        .fab-container {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            z-index: 100;
-        }
-        .fab {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .fab:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-        }
-        .fab-whatsapp {
-            background: #25D366;
-            color: white;
-        }
-        .fab-save {
-            background: #dc2626;
-            color: white;
-        }
-        
-        /* Modal pour l'historique */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-        .modal.active {
-            display: flex;
-        }
-        .modal-content {
-            background: white;
-            border-radius: 16px;
-            max-width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-            padding: 24px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-        
-        /* Bouton d'installation PWA */
-        .install-banner {
-            display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-            color: white;
-            padding: 16px;
-            z-index: 1000;
-            box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
-        }
-        .install-banner.show {
-            display: block;
+        .logo-beeauto svg { width: 36px; height: 36px; }
+
+        .tarif-option { transition: all 0.3s ease; cursor: pointer; border: 2px solid #e2e8f0; border-radius: 8px; padding: 12px; text-align: center; position: relative; }
+        .tarif-option.selected { border-color: #dc2626; background: #fef2f2; }
+        .tarif-option.selected .tarif-label { color: #dc2626; }
+        .tarif-badge { background: #dc2626; color: white; font-size: 0.6rem; padding: 2px 6px; border-radius: 8px; font-weight: 700; position: absolute; top: -8px; right: -8px; }
+
+        /* Gestion des vues Mobile */
+        .view-section { display: none; }
+        .view-section.active { display: block; }
+        @media (min-width: 769px) {
+            .view-section { display: block !important; }
+            .mobile-toggle { display: none !important; }
         }
     </style>
 </head>
-<body class="bg-slate-100 text-slate-800 font-['Montserrat'] h-screen flex flex-col overflow-hidden">
+<body class="bg-slate-100 text-slate-800 h-screen flex flex-col overflow-hidden">
 
     <!-- Header -->
-    <header class="bg-slate-900 text-white py-4 px-6 flex justify-between items-center shadow-lg z-10">
+    <header class="bg-slate-900 text-white py-3 px-4 flex justify-between items-center shadow-md z-20 flex-shrink-0">
         <div class="flex items-center gap-3">
             <div class="logo-beeauto">
+                <!-- Logo Volant de voiture -->
                 <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M256 100c-40 0-72 32-72 72v40c0 40 32 72 72 72s72-32 72-72v-40c0-40-32-72-72-72zm0 40c18 0 32 14 32 32v40c0 18-14 32-32 32s-32-14-32-32v-40c0-18 14-32 32-32zM150 320c-20 0-36 16-36 36v20c0 20 16 36 36 36h212c20 0 36-16 36-36v-20c0-20-16-36-36-36H150zm0 20h212c9 0 16 7 16 16v20c0 9-7 16-16 16H150c-9 0-16-7-16-16v-20c0-9 7-16 16-16z" fill="white"/>
+                    <circle cx="256" cy="256" r="140" fill="none" stroke="white" stroke-width="40"/>
+                    <path d="M180 256h152M256 180v152M190 190l132 132M322 190L190 322" stroke="white" stroke-width="30" stroke-linecap="round"/>
                 </svg>
             </div>
             <div>
-                <h1 class="text-lg font-['Playfair_Display'] font-bold tracking-wide">Bee'Auto</h1>
-                <p class="text-xs text-slate-400">Générateur de Devis</p>
+                <h1 class="text-lg font-playfair font-bold leading-tight">Bee'Auto</h1>
+                <p class="text-[10px] text-slate-400 uppercase tracking-wider">Générateur de Devis</p>
             </div>
         </div>
-        <button onclick="showHistory()" class="bg-white/10 hover:bg-white/20 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 flex items-center gap-2 text-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            Historique
+        <button onclick="showHistory()" class="bg-white/10 hover:bg-white/20 p-2 rounded-lg transition-colors" title="Historique">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
         </button>
     </header>
 
-    <main class="flex-1 flex overflow-hidden">
+    <!-- Onglets Mobile -->
+    <div class="mobile-toggle bg-white border-b border-slate-200 p-2 flex gap-2 z-10 flex-shrink-0">
+        <button onclick="switchView('form')" id="btnForm" class="flex-1 py-2.5 px-4 rounded-lg font-semibold text-sm transition-all bg-red text-white shadow-md">
+            ✏️ Formulaire
+        </button>
+        <button onclick="switchView('preview')" id="btnPreview" class="flex-1 py-2.5 px-4 rounded-lg font-semibold text-sm transition-all bg-slate-100 text-slate-600">
+            👁️ Aperçu du Devis
+        </button>
+    </div>
+
+    <main class="flex-1 flex overflow-hidden relative">
         
-        <!-- Panneau de gauche : Formulaire -->
-        <aside class="w-1/3 min-w-[380px] bg-white border-r border-slate-200 p-6 overflow-y-auto custom-scrollbar shadow-xl z-10">
-            <h2 class="text-lg font-['Playfair_Display'] font-bold text-slate-900 mb-6 flex items-center gap-2">
-                <span class="w-1 h-6 bg-red rounded-full"></span>
-                Personnalisation du Devis
-            </h2>
+        <!-- PANNEAU FORMULAIRE -->
+        <aside id="viewForm" class="view-section active w-full md:w-1/3 lg:w-1/4 bg-white border-r border-slate-200 overflow-y-auto p-4 md:p-6">
+            <h2 class="text-lg font-playfair font-bold text-slate-900 mb-4 hidden md:block">Nouveau Devis</h2>
 
             <form id="devisForm" class="space-y-4" oninput="updatePreview()">
-                
                 <div>
-                    <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Nom du Client</label>
-                    <input type="text" id="inputClient" value="Amar Ly Sarr" class="input-premium w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm">
+                    <label class="block text-xs font-semibold text-slate-500 uppercase mb-1">Nom du Client</label>
+                    <input type="text" id="inputClient" value="Amar Ly Sarr" class="input-premium w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-sm">
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Adresse du Client</label>
-                    <input type="text" id="inputAdresseClient" value="Saint-Louis, Sénégal" class="input-premium w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm">
+                    <label class="block text-xs font-semibold text-slate-500 uppercase mb-1">Ville / Adresse</label>
+                    <input type="text" id="inputAdresseClient" value="Saint-Louis, Sénégal" class="input-premium w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-sm">
                 </div>
 
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">N° Devis (Auto)</label>
-                        <input type="text" id="inputNumero" readonly class="w-full px-4 py-2.5 bg-slate-100 border border-slate-200 rounded-lg text-sm text-slate-500 cursor-not-allowed font-mono">
+                        <label class="block text-xs font-semibold text-slate-500 uppercase mb-1">N° Devis</label>
+                        <input type="text" id="inputNumero" readonly class="w-full px-3 py-3 bg-slate-100 border border-slate-200 rounded-lg text-xs font-mono text-slate-500">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Date</label>
-                        <input type="date" id="inputDate" class="input-premium w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm">
+                        <label class="block text-xs font-semibold text-slate-500 uppercase mb-1">Date</label>
+                        <input type="date" id="inputDate" class="input-premium w-full px-3 py-3 bg-slate-50 border border-slate-200 rounded-lg text-sm">
                     </div>
                 </div>
 
-                <div class="pt-4 border-t border-slate-200">
-                    <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Type de Tarif</label>
+                <div class="pt-2 border-t border-slate-100">
+                    <label class="block text-xs font-semibold text-slate-500 uppercase mb-3">Type de Tarif</label>
                     <div class="grid grid-cols-2 gap-3">
-                        <label class="tarif-option border-2 border-slate-200 rounded-lg p-3 text-center" onclick="selectTarif('normal')">
-                            <input type="radio" name="typeTarif" value="normal" id="tarifNormal">
-                            <div class="tarif-label text-sm font-bold text-slate-700 mb-1">Tarif Normal</div>
-                            <div class="text-xs text-slate-500">100 000 F CFA</div>
+                        <label class="tarif-option" onclick="selectTarif('normal')">
+                            <input type="radio" name="typeTarif" value="normal" id="tarifNormal" class="hidden">
+                            <div class="tarif-label text-sm font-bold text-slate-700 mb-1">Normal</div>
+                            <div class="text-xs text-slate-500">100 000 F</div>
                         </label>
-                        <label class="tarif-option border-2 border-slate-200 rounded-lg p-3 text-center relative" onclick="selectTarif('etudiant')">
-                            <input type="radio" name="typeTarif" value="etudiant" id="tarifEtudiant">
-                            <span class="tarif-badge absolute -top-2 -right-2">PROMO</span>
-                            <div class="tarif-label text-sm font-bold text-slate-700 mb-1">Tarif Étudiant</div>
-                            <div class="text-xs text-slate-500">70 000 F CFA</div>
+                        <label class="tarif-option selected" onclick="selectTarif('etudiant')">
+                            <input type="radio" name="typeTarif" value="etudiant" id="tarifEtudiant" class="hidden">
+                            <span class="tarif-badge">PROMO</span>
+                            <div class="tarif-label text-sm font-bold text-slate-700 mb-1">Étudiant</div>
+                            <div class="text-xs text-slate-500">70 000 F</div>
                         </label>
                     </div>
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Intitulé de la Formation</label>
-                    <input type="text" id="inputFormation" value="Forfait Permis B Complet" class="input-premium w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm">
+                    <label class="block text-xs font-semibold text-slate-500 uppercase mb-1">Formation</label>
+                    <input type="text" id="inputFormation" value="Forfait Permis B Complet" class="input-premium w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-sm">
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Prix de la Formation (F CFA)</label>
-                    <input type="number" id="inputPrix" value="70000" class="input-premium w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm font-semibold text-slate-900">
-                    <p class="text-xs text-slate-400 mt-1" id="prixInfo">Tarif étudiant appliqué (réduction de 30 000 F CFA)</p>
+                    <label class="block text-xs font-semibold text-slate-500 uppercase mb-1">Prix (F CFA)</label>
+                    <input type="number" id="inputPrix" value="70000" class="input-premium w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-sm font-bold text-slate-900">
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Documents à fournir (un par ligne)</label>
-                    <textarea id="inputDocuments" rows="6" class="input-premium w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm resize-none">1 Photocopie légalisée de la Carte Nationale d'Identité (CNI)
+                    <label class="block text-xs font-semibold text-slate-500 uppercase mb-1">Documents (1 par ligne)</label>
+                    <textarea id="inputDocuments" rows="5" class="input-premium w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-sm resize-none">1 Photocopie légalisée de la CNI
 2 Photos d'identité
 1 Certificat de résidence
 1 Attestation de groupe sanguin
-1 Certificat de visite médicale d'aptitude</textarea>
-                </div>
-
-                <div class="pt-4 border-t border-slate-200">
-                    <p class="text-xs text-slate-400 italic">La signature et les informations de l'auto-école sont pré-configurées et fixes pour garantir l'identité visuelle de Bee'Auto.</p>
+1 Certificat de visite médicale</textarea>
                 </div>
             </form>
         </aside>
 
-        <!-- Panneau de droite : Aperçu A4 -->
-        <section class="flex-1 bg-slate-200/60 overflow-y-auto p-8 flex justify-center items-start">
+        <!-- PANNEAU APERÇU & ACTIONS -->
+        <section id="viewPreview" class="view-section w-full md:w-2/3 lg:w-3/4 bg-slate-200/50 overflow-y-auto p-4 md:p-8 flex flex-col items-center">
             
-            <div id="pdf-content" class="a4-page p-12 flex flex-col justify-between">
-                
-                <div>
-                    <div class="flex justify-between items-start mb-10">
-                        <div>
-                            <div class="logo-beeauto mb-4">
-                                <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M256 100c-40 0-72 32-72 72v40c0 40 32 72 72 72s72-32 72-72v-40c0-40-32-72-72-72zm0 40c18 0 32 14 32 32v40c0 18-14 32-32 32s-32-14-32-32v-40c0-18 14-32 32-32zM150 320c-20 0-36 16-36 36v20c0 20 16 36 36 36h212c20 0 36-16 36-36v-20c0-20-16-36-36-36H150zm0 20h212c9 0 16 7 16 16v20c0 9-7 16-16 16H150c-9 0-16-7-16-16v-20c0-9 7-16 16-16z" fill="white"/>
-                                </svg>
+            <!-- Barre d'actions collante -->
+            <div class="w-full max-w-[210mm] mb-4 flex flex-col sm:flex-row gap-3 sticky top-0 z-10">
+                <button onclick="generatePDF()" class="flex-1 bg-red hover:bg-red-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                    1. Télécharger le PDF
+                </button>
+                <button onclick="shareWhatsApp()" class="flex-1 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    2. Envoyer par WhatsApp
+                </button>
+                <button onclick="saveDevis()" class="sm:w-auto w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" /></svg>
+                    Sauvegarder
+                </button>
+            </div>
+
+            <!-- Zone d'aperçu du document A4 -->
+            <div class="a4-wrapper w-full flex justify-center">
+                <div id="pdf-content" class="a4-page p-8 md:p-12 flex flex-col justify-between text-xs md:text-sm font-montserrat">
+                    
+                    <div>
+                        <div class="flex justify-between items-start mb-8 md:mb-10">
+                            <div>
+                                <div class="logo-beeauto mb-3 md:mb-4">
+                                    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="256" cy="256" r="140" fill="none" stroke="white" stroke-width="40"/>
+                                        <path d="M180 256h152M256 180v152M190 190l132 132M322 190L190 322" stroke="white" stroke-width="30" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                                <h2 class="text-xl md:text-2xl font-playfair font-bold text-slate-900">Bee'Auto</h2>
+                                <p class="text-slate-500 text-xs md:text-sm mt-1">Saint-Louis, Sénégal</p>
+                                <p class="text-slate-500 text-xs md:text-sm">Tél : +221 77 224 13 65</p>
+                                <p class="text-slate-500 text-xs md:text-sm">Email : bintouniang1234@gmail.com</p>
                             </div>
-                            <h2 class="text-2xl font-['Playfair_Display'] font-bold text-slate-900">Bee'Auto</h2>
-                            <p class="text-slate-500 text-sm mt-1">Saint-Louis, Sénégal</p>
-                            <p class="text-slate-500 text-sm">Tél : +221 77 224 13 65</p>
-                            <p class="text-slate-500 text-sm">Email : bintouniang1234@gmail.com</p>
+                            <div class="text-right">
+                                <h1 class="text-2xl md:text-4xl font-playfair font-bold text-slate-900 mb-2">DEVIS</h1>
+                                <div class="inline-block bg-slate-50 px-3 md:px-5 py-2 md:py-3 rounded-lg border border-slate-200 shadow-sm">
+                                    <p class="text-[10px] md:text-xs text-slate-500 uppercase tracking-wider font-semibold">N° Devis</p>
+                                    <p id="previewNumero" class="text-sm md:text-lg font-bold text-slate-900 font-mono">DEV-XXXX</p>
+                                </div>
+                                <div class="mt-3 md:mt-4">
+                                    <p class="text-[10px] md:text-xs text-slate-500 uppercase tracking-wider font-semibold">Date</p>
+                                    <p id="previewDate" class="text-xs md:text-sm font-medium text-slate-900">--/--/----</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="text-right">
-                            <h1 class="text-4xl font-['Playfair_Display'] font-bold text-slate-900 mb-2">DEVIS</h1>
-                            <div class="inline-block bg-slate-50 px-5 py-3 rounded-lg border border-slate-200 shadow-sm">
-                                <p class="text-xs text-slate-500 uppercase tracking-wider font-semibold">N° Devis</p>
-                                <p id="previewNumero" class="text-lg font-bold text-slate-900 font-mono tracking-wide">DEV-XXXXXXXX</p>
-                            </div>
-                            <div class="mt-4">
-                                <p class="text-xs text-slate-500 uppercase tracking-wider font-semibold">Date d'émission</p>
-                                <p id="previewDate" class="text-sm font-medium text-slate-900">--/--/----</p>
-                            </div>
+
+                        <div class="w-full h-px bg-gradient-to-r from-transparent via-red-accent to-transparent mb-6 md:mb-8"></div>
+
+                        <div class="mb-6 md:mb-8">
+                            <p class="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Destinataire</p>
+                            <h3 id="previewClient" class="text-lg md:text-xl font-bold text-slate-900">Amar Ly Sarr</h3>
+                            <p id="previewAdresseClient" class="text-slate-600 text-xs md:text-sm mt-1">Saint-Louis, Sénégal</p>
                         </div>
-                    </div>
 
-                    <div class="w-full h-px bg-gradient-to-r from-transparent via-red-accent to-transparent mb-8"></div>
-
-                    <div class="mb-8">
-                        <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Destinataire</p>
-                        <h3 id="previewClient" class="text-xl font-bold text-slate-900">Amar Ly Sarr</h3>
-                        <p id="previewAdresseClient" class="text-slate-600 text-sm mt-1">Saint-Louis, Sénégal</p>
-                    </div>
-
-                    <div class="mb-8">
-                        <table class="w-full text-left border-collapse">
-                            <thead>
-                                <tr class="border-b-2 border-slate-900">
-                                    <th class="py-3 text-xs font-bold text-slate-900 uppercase tracking-wider w-3/4">Description de la prestation</th>
-                                    <th class="py-3 text-xs font-bold text-slate-900 uppercase tracking-wider text-right">Montant</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="border-b border-slate-200">
-                                    <td class="py-4 text-slate-700">
-                                        <p id="previewFormation" class="font-bold text-slate-900 text-base">Forfait Permis B Complet</p>
-                                        <p class="text-sm text-slate-500 mt-2 leading-relaxed">
-                                            Formation complète incluant le code et la conduite. <br>
-                                            <span class="red-accent font-semibold">Modalités de règlement :</span> Paiement échelonné accordé, avec une possibilité de régler en 2 tranches minimum.
-                                        </p>
-                                        <p id="previewTarifReduction" class="text-xs text-green-600 font-semibold mt-2 hidden">✓ Tarif étudiant appliqué - Économie de 30 000 F CFA</p>
-                                    </td>
-                                    <td class="py-4 text-right">
-                                        <div id="previewPrixContainer">
-                                            <p id="previewPrixBarre" class="text-sm text-slate-400 line-through hidden">100 000 F</p>
-                                            <p class="font-bold text-slate-900 text-lg">
-                                                <span id="previewPrix">70 000</span> <span class="text-sm font-normal text-slate-500">F CFA</span>
+                        <div class="mb-6 md:mb-8 overflow-x-auto">
+                            <table class="w-full text-left border-collapse min-w-[400px]">
+                                <thead>
+                                    <tr class="border-b-2 border-slate-900">
+                                        <th class="py-2 md:py-3 text-[10px] md:text-xs font-bold text-slate-900 uppercase tracking-wider w-3/4">Prestation</th>
+                                        <th class="py-2 md:py-3 text-[10px] md:text-xs font-bold text-slate-900 uppercase tracking-wider text-right">Montant</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b border-slate-200">
+                                        <td class="py-3 md:py-4 text-slate-700">
+                                            <p id="previewFormation" class="font-bold text-slate-900 text-sm md:text-base">Forfait Permis B Complet</p>
+                                            <p class="text-[10px] md:text-sm text-slate-500 mt-1 md:mt-2 leading-relaxed">
+                                                Formation complète (code + conduite).<br>
+                                                <span class="red-accent font-semibold">Règlement :</span> Paiement échelonné en 2 tranches minimum.
                                             </p>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr class="border-t-2 border-slate-900">
-                                    <td class="py-4 text-right text-base font-bold text-slate-900">TOTAL À PAYER</td>
-                                    <td class="py-4 text-right text-2xl font-bold text-slate-900 red-accent">
-                                        <span id="previewTotal">70 000</span> <span class="text-base font-normal text-slate-600">F CFA</span>
-                                    </td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-
-                    <div class="bg-slate-50 border-l-4 border-red p-5 rounded-r-lg mb-6">
-                        <h4 class="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3 flex items-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 red-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                            Constitution de votre Dossier d'Inscription
-                        </h4>
-                        <ul id="previewDocuments" class="space-y-2 text-sm text-slate-700"></ul>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-6 mb-6">
-                        <div class="info-box p-4 rounded-r-md">
-                            <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-2 red-accent">Conditions & Durée</h4>
-                            <ul class="text-xs text-slate-600 space-y-1.5 leading-relaxed">
-                                <li>• <span class="font-semibold">Âge requis :</span> 18 ans et 1 mois minimum pour le dépôt officiel.</li>
-                                <li>• <span class="font-semibold">Délai d'obtention :</span> 2 à 3 mois.</li>
-                                <li>• Le rythme et la date d'examen dépendent de votre assiduité et implication.</li>
-                            </ul>
+                                            <p id="previewTarifReduction" class="text-[10px] md:text-xs text-green-600 font-semibold mt-2 hidden">✓ Tarif étudiant : Économie de 30 000 F CFA</p>
+                                        </td>
+                                        <td class="py-3 md:py-4 text-right align-top">
+                                            <p id="previewPrixBarre" class="text-xs text-slate-400 line-through hidden">100 000 F</p>
+                                            <p class="font-bold text-slate-900 text-base md:text-lg">
+                                                <span id="previewPrix">70 000</span> <span class="text-xs md:text-sm font-normal text-slate-500">F</span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr class="border-t-2 border-slate-900">
+                                        <td class="py-3 md:py-4 text-right text-sm md:text-base font-bold text-slate-900">TOTAL À PAYER</td>
+                                        <td class="py-3 md:py-4 text-right text-xl md:text-2xl font-bold red-accent">
+                                            <span id="previewTotal">70 000</span> <span class="text-xs md:text-base font-normal text-slate-600">F CFA</span>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
                         </div>
-                        <div class="info-box p-4 rounded-r-md" style="border-left-color: #f87171;">
-                            <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-2" style="color: #dc2626;">⚠️ Frais Réglementaires (Non inclus)</h4>
-                            <p class="text-xs text-slate-500 mb-2 italic">Ces frais administratifs liés aux formalités d'État sont à la charge du client :</p>
-                            <ul class="text-xs text-slate-700 space-y-1 font-medium">
-                                <li class="flex justify-between"><span>Timbre de dépôt de dossier</span> <span>10 000 F</span></li>
-                                <li class="flex justify-between"><span>Timbre d'enrôlement</span> <span>10 000 F</span></li>
-                                <li class="flex justify-between"><span>Location véhicule examen</span> <span>5 000 F</span></li>
-                                <li class="flex justify-between"><span>Timbre de délivrance finale</span> <span>10 000 F</span></li>
-                            </ul>
+
+                        <div class="bg-slate-50 border-l-4 border-red p-3 md:p-5 rounded-r-lg mb-4 md:mb-6">
+                            <h4 class="text-xs md:text-sm font-bold text-slate-900 uppercase tracking-wider mb-2 md:mb-3 flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 md:h-4 md:w-4 red-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                                Dossier d'Inscription
+                            </h4>
+                            <ul id="previewDocuments" class="space-y-1 md:space-y-2 text-[10px] md:text-sm text-slate-700"></ul>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
+                            <div class="bg-slate-50 border-l-4 border-red p-3 md:p-4 rounded-r-md">
+                                <h4 class="text-[10px] md:text-xs font-bold text-slate-900 uppercase tracking-wider mb-2 red-accent">Conditions & Durée</h4>
+                                <ul class="text-[10px] md:text-xs text-slate-600 space-y-1 leading-relaxed">
+                                    <li>• <span class="font-semibold">Âge :</span> 18 ans et 1 mois min. pour le dépôt.</li>
+                                    <li>• <span class="font-semibold">Délai :</span> 2 à 3 mois.</li>
+                                    <li>• Le rythme dépend de votre assiduité.</li>
+                                </ul>
+                            </div>
+                            <div class="bg-slate-50 border-l-4 p-3 md:p-4 rounded-r-md" style="border-left-color: #f87171;">
+                                <h4 class="text-[10px] md:text-xs font-bold text-slate-900 uppercase tracking-wider mb-2" style="color: #dc2626;">⚠️ Frais Réglementaires (Non inclus)</h4>
+                                <p class="text-[10px] md:text-xs text-slate-500 mb-2 italic">À la charge du client (formalités d'État) :</p>
+                                <ul class="text-[10px] md:text-xs text-slate-700 space-y-1 font-medium">
+                                    <li class="flex justify-between"><span>Timbre dépôt dossier</span> <span>10 000 F</span></li>
+                                    <li class="flex justify-between"><span>Timbre enrôlement</span> <span>10 000 F</span></li>
+                                    <li class="flex justify-between"><span>Location véhicule examen</span> <span>5 000 F</span></li>
+                                    <li class="flex justify-between"><span>Timbre délivrance finale</span> <span>10 000 F</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-auto pt-4 md:pt-6 border-t border-slate-200">
+                        <p class="text-[10px] md:text-sm text-slate-600 italic text-center mb-6 md:mb-8 font-playfair">
+                            "Bee'Auto s'engage à vous offrir un accompagnement de qualité pour faire de vous un conducteur serein et responsable."
+                        </p>
+                        <div class="flex justify-between items-end">
+                            <div class="text-[10px] md:text-xs text-slate-400 max-w-[200px] md:max-w-md">
+                                <p class="font-bold text-slate-600 mb-1">Validité :</p>
+                                <p>Devis valable 30 jours. Bon pour accord, date et signature précédés de "Lu et approuvé".</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Signature</p>
+                                <div class="signature-line mx-auto"></div>
+                                <p class="signature-font mt-1 mb-0 text-2xl md:text-3xl">Bintou Niang</p>
+                                <p class="text-[10px] md:text-xs text-slate-500 font-medium mt-1">Responsable Bee'Auto</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="mt-auto">
-                    <p class="text-sm text-slate-600 italic text-center mb-8 font-['Playfair_Display']">
-                        "Bee'Auto s'engage à vous offrir un accompagnement de qualité pour faire de vous un conducteur serein et responsable. Nous sommes prêts à démarrer dès la remise de votre dossier !"
-                    </p>
-
-                    <div class="flex justify-between items-end pt-6 border-t border-slate-200">
-                        <div class="text-xs text-slate-400 max-w-md">
-                            <p class="font-bold text-slate-600 mb-1">Conditions de validité :</p>
-                            <p>Devis valable 30 jours. Bon pour accord, date et signature précédés de la mention "Lu et approuvé".</p>
-                        </div>
-                        
-                        <div class="text-center">
-                            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Signature du responsable</p>
-                            <div class="signature-line mx-auto"></div>
-                            <p class="signature-font mt-1 mb-0">Bintou Niang</p>
-                            <p class="text-xs text-slate-500 font-medium mt-1">Responsable Bee'Auto</p>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </section>
     </main>
 
-    <!-- Boutons d'action flottants -->
-    <div class="fab-container">
-        <div class="fab fab-whatsapp" onclick="sendWhatsApp()" title="Envoyer par WhatsApp">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-            </svg>
-        </div>
-        <div class="fab fab-save" onclick="saveDevis()" title="Enregistrer le devis">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
-            </svg>
-        </div>
-    </div>
-
     <!-- Modal Historique -->
-    <div id="historyModal" class="modal">
-        <div class="modal-content">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-xl font-bold text-slate-900">Historique des Devis</h3>
-                <button onclick="closeHistory()" class="text-slate-400 hover:text-slate-600">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
+    <div id="historyModal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full max-h-[80vh] overflow-y-auto shadow-2xl">
+            <div class="flex justify-between items-center p-4 border-b border-slate-100 sticky top-0 bg-white">
+                <h3 class="text-lg font-bold text-slate-900">Historique des Devis</h3>
+                <button onclick="closeHistory()" class="text-slate-400 hover:text-slate-600 p-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
                 </button>
             </div>
-            <div id="historyList" class="space-y-3"></div>
-        </div>
-    </div>
-
-    <!-- Bannière d'installation PWA -->
-    <div id="installBanner" class="install-banner">
-        <div class="flex items-center justify-between max-w-4xl mx-auto">
-            <div class="flex items-center gap-3">
-                <div class="logo-beeauto" style="width: 48px; height: 48px;">
-                    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" style="width: 32px; height: 32px;">
-                        <path d="M256 100c-40 0-72 32-72 72v40c0 40 32 72 72 72s72-32 72-72v-40c0-40-32-72-72-72zm0 40c18 0 32 14 32 32v40c0 18-14 32-32 32s-32-14-32-32v-40c0-18 14-32 32-32zM150 320c-20 0-36 16-36 36v20c0 20 16 36 36 36h212c20 0 36-16 36-36v-20c0-20-16-36-36-36H150zm0 20h212c9 0 16 7 16 16v20c0 9-7 16-16 16H150c-9 0-16-7-16-16v-20c0-9 7-16 16-16z" fill="white"/>
-                    </svg>
-                </div>
-                <div>
-                    <p class="font-bold">Installer Bee'Auto</p>
-                    <p class="text-xs opacity-90">Ajoutez l'app à votre écran d'accueil</p>
-                </div>
-            </div>
-            <div class="flex gap-2">
-                <button onclick="dismissInstall()" class="bg-white/20 hover:bg-white/30 text-white font-semibold py-2 px-4 rounded-lg text-sm">Plus tard</button>
-                <button onclick="installApp()" class="bg-white text-red-accent hover:bg-slate-100 font-bold py-2 px-4 rounded-lg text-sm">Installer</button>
-            </div>
+            <div id="historyList" class="p-4 space-y-3"></div>
         </div>
     </div>
 
     <script>
-        // Service Worker pour PWA
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('data:application/javascript,' + encodeURIComponent(`
-                    self.addEventListener('fetch', (event) => {
-                        event.respondWith(fetch(event.request));
-                    });
-                `)).catch(() => {});
-            });
-        }
+        // Gestion de l'affichage Mobile (Onglets)
+        function switchView(view) {
+            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+            document.getElementById('btnForm').classList.remove('bg-red', 'text-white', 'shadow-md');
+            document.getElementById('btnForm').classList.add('bg-slate-100', 'text-slate-600');
+            document.getElementById('btnPreview').classList.remove('bg-red', 'text-white', 'shadow-md');
+            document.getElementById('btnPreview').classList.add('bg-slate-100', 'text-slate-600');
 
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            document.getElementById('installBanner').classList.add('show');
-        });
-
-        function installApp() {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then(() => {
-                    deferredPrompt = null;
-                    document.getElementById('installBanner').classList.remove('show');
-                });
+            if (view === 'form') {
+                document.getElementById('viewForm').classList.add('active');
+                document.getElementById('btnForm').classList.add('bg-red', 'text-white', 'shadow-md');
+                document.getElementById('btnForm').classList.remove('bg-slate-100', 'text-slate-600');
+            } else {
+                document.getElementById('viewPreview').classList.add('active');
+                document.getElementById('btnPreview').classList.add('bg-red', 'text-white', 'shadow-md');
+                document.getElementById('btnPreview').classList.remove('bg-slate-100', 'text-slate-600');
+                updatePreview(); // Rafraîchir l'aperçu quand on change d'onglet
             }
         }
-
-        function dismissInstall() {
-            document.getElementById('installBanner').classList.remove('show');
-        }
-
-        // Masquer la barre d'adresse sur iOS
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                window.scrollTo(0, 1);
-            }, 0);
-        });
 
         function formatFCFA(amount) {
             return new Intl.NumberFormat('fr-FR').format(amount);
@@ -563,27 +383,18 @@
         }
 
         function selectTarif(type) {
-            const tarifNormal = document.getElementById('tarifNormal');
-            const tarifEtudiant = document.getElementById('tarifEtudiant');
             const inputPrix = document.getElementById('inputPrix');
-            const prixInfo = document.getElementById('prixInfo');
-            
-            document.querySelectorAll('.tarif-option').forEach(opt => {
-                opt.classList.remove('selected');
-            });
+            document.querySelectorAll('.tarif-option').forEach(opt => opt.classList.remove('selected'));
             
             if (type === 'normal') {
-                tarifNormal.checked = true;
+                document.getElementById('tarifNormal').checked = true;
                 document.querySelector('label[onclick="selectTarif(\'normal\')"]').classList.add('selected');
                 inputPrix.value = 100000;
-                prixInfo.textContent = 'Tarif normal appliqué';
-            } else if (type === 'etudiant') {
-                tarifEtudiant.checked = true;
+            } else {
+                document.getElementById('tarifEtudiant').checked = true;
                 document.querySelector('label[onclick="selectTarif(\'etudiant\')"]').classList.add('selected');
                 inputPrix.value = 70000;
-                prixInfo.textContent = 'Tarif étudiant appliqué (réduction de 30 000 F CFA)';
             }
-            
             updatePreview();
         }
 
@@ -607,41 +418,31 @@
             document.getElementById('previewAdresseClient').textContent = adresse;
             document.getElementById('previewNumero').textContent = numero;
             document.getElementById('previewFormation').textContent = formation;
-            
             document.getElementById('previewPrix').textContent = formatFCFA(prix);
             document.getElementById('previewTotal').textContent = formatFCFA(prix);
 
-            const tarifEtudiant = document.getElementById('tarifEtudiant');
-            const prixBarre = document.getElementById('previewPrixBarre');
-            const tarifReduction = document.getElementById('previewTarifReduction');
-            
-            if (tarifEtudiant.checked && prix === 70000) {
-                prixBarre.classList.remove('hidden');
-                tarifReduction.classList.remove('hidden');
-            } else {
-                prixBarre.classList.add('hidden');
-                tarifReduction.classList.add('hidden');
-            }
+            const isEtudiant = document.getElementById('tarifEtudiant').checked && prix === 70000;
+            document.getElementById('previewPrixBarre').classList.toggle('hidden', !isEtudiant);
+            document.getElementById('previewTarifReduction').classList.toggle('hidden', !isEtudiant);
 
             const dateVal = document.getElementById('inputDate').value;
             if (dateVal) {
-                const dateObj = new Date(dateVal);
-                document.getElementById('previewDate').textContent = dateObj.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+                document.getElementById('previewDate').textContent = new Date(dateVal).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
             }
 
             const docList = document.getElementById('previewDocuments');
             docList.innerHTML = '';
             if (documentsRaw.trim() !== '') {
-                const lines = documentsRaw.split('\n').filter(line => line.trim() !== '');
-                lines.forEach(line => {
+                documentsRaw.split('\n').filter(line => line.trim() !== '').forEach(line => {
                     const li = document.createElement('li');
                     li.className = 'flex items-start gap-2';
-                    li.innerHTML = `<span class="red-accent mt-1.5 text-xs">●</span> <span>${line.trim()}</span>`;
+                    li.innerHTML = `<span class="red-accent mt-1 text-xs">●</span> <span>${line.trim()}</span>`;
                     docList.appendChild(li);
                 });
             }
         }
 
+        // 1. GÉNÉRER ET TÉLÉCHARGER LE PDF
         function generatePDF() {
             const element = document.getElementById('pdf-content');
             const clientName = document.getElementById('inputClient').value || 'Client';
@@ -651,40 +452,58 @@
                 margin: 0,
                 filename: `Devis_BeeAuto_${numeroDevis}_${clientName.replace(/\s+/g, '_')}.pdf`,
                 image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { 
-                    scale: 3,
-                    useCORS: true,
-                    letterRendering: true,
-                    backgroundColor: '#ffffff'
-                },
-                jsPDF: { 
-                    unit: 'mm', 
-                    format: 'a4', 
-                    orientation: 'portrait' 
-                }
+                html2canvas: { scale: 3, useCORS: true, backgroundColor: '#ffffff' },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
 
-            return html2pdf().set(opt).from(element).save();
+            const btn = event.currentTarget;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = `<svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Création...`;
+            btn.disabled = true;
+
+            return html2pdf().set(opt).from(element).save().then(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                return true; // Indique que le téléchargement est réussi
+            }).catch(err => {
+                console.error(err);
+                alert("Erreur lors de la génération du PDF.");
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                return false;
+            });
         }
 
+        // 2. PARTAGER SUR WHATSAPP (Télécharge d'abord, puis ouvre WhatsApp)
+        async function shareWhatsApp() {
+            const success = await generatePDF();
+            if (success) {
+                const client = document.getElementById('inputClient').value;
+                const numero = document.getElementById('inputNumero').value;
+                const prix = document.getElementById('inputPrix').value;
+                
+                const message = `Bonjour ${client},\n\nVotre devis N°${numero} pour la formation est prêt.\n\nMontant : ${formatFCFA(prix)} F CFA.\n\n📎 *Veuillez trouver le fichier PDF en pièce jointe de ce message.*\n\nCordialement,\nBee'Auto - Saint-Louis`;
+                
+                window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+            }
+        }
+
+        // 3. SAUVEGARDER DANS L'HISTORIQUE
         function saveDevis() {
             const devis = {
                 id: Date.now(),
                 numero: document.getElementById('inputNumero').value,
                 client: document.getElementById('inputClient').value,
-                adresse: document.getElementById('inputAdresseClient').value,
                 date: document.getElementById('inputDate').value,
-                formation: document.getElementById('inputFormation').value,
                 prix: document.getElementById('inputPrix').value,
-                tarifType: document.getElementById('tarifEtudiant').checked ? 'etudiant' : 'normal',
-                documents: document.getElementById('inputDocuments').value
+                formation: document.getElementById('inputFormation').value
             };
 
             let history = JSON.parse(localStorage.getItem('beeauto_devis') || '[]');
             history.unshift(devis);
             localStorage.setItem('beeauto_devis', JSON.stringify(history));
 
-            alert('✓ Devis enregistré avec succès !');
+            alert(`✅ Devis N°${devis.numero} sauvegardé dans l'historique de l'application.`);
         }
 
         function showHistory() {
@@ -692,41 +511,29 @@
             const historyList = document.getElementById('historyList');
             
             if (history.length === 0) {
-                historyList.innerHTML = '<p class="text-center text-slate-400 py-8">Aucun devis enregistré</p>';
+                historyList.innerHTML = '<p class="text-center text-slate-400 py-8">Aucun devis sauvegardé</p>';
             } else {
-                historyList.innerHTML = history.map(devis => `
-                    <div class="border border-slate-200 rounded-lg p-4 hover:border-red-accent transition-colors">
+                historyList.innerHTML = history.map(d => `
+                    <div class="border border-slate-200 rounded-xl p-4 bg-slate-50">
                         <div class="flex justify-between items-start mb-2">
                             <div>
-                                <p class="font-bold text-slate-900">${devis.client}</p>
-                                <p class="text-xs text-slate-500">${devis.numero}</p>
+                                <p class="font-bold text-slate-900">${d.client}</p>
+                                <p class="text-xs text-slate-500 font-mono">${d.numero}</p>
                             </div>
-                            <span class="text-sm font-bold red-accent">${formatFCFA(devis.prix)} F</span>
+                            <span class="text-sm font-bold red-accent">${formatFCFA(d.prix)} F</span>
                         </div>
-                        <p class="text-xs text-slate-600">${devis.formation}</p>
-                        <p class="text-xs text-slate-400 mt-2">${new Date(devis.date).toLocaleDateString('fr-FR')}</p>
+                        <p class="text-xs text-slate-600">${d.formation}</p>
+                        <p class="text-xs text-slate-400 mt-2">${new Date(d.date).toLocaleDateString('fr-FR')}</p>
                     </div>
                 `).join('');
             }
-            
-            document.getElementById('historyModal').classList.add('active');
+            document.getElementById('historyModal').classList.remove('hidden');
+            document.getElementById('historyModal').classList.add('flex');
         }
 
         function closeHistory() {
-            document.getElementById('historyModal').classList.remove('active');
-        }
-
-        function sendWhatsApp() {
-            const client = document.getElementById('inputClient').value;
-            const numero = document.getElementById('inputNumero').value;
-            const formation = document.getElementById('inputFormation').value;
-            const prix = document.getElementById('inputPrix').value;
-            
-            const message = `Bonjour ${client},\n\nVoici votre devis ${numero} pour la formation "${formation}".\n\nMontant : ${formatFCFA(prix)} F CFA\n\nN'hésitez pas à nous contacter pour toute question.\n\nCordialement,\nBee'Auto`;
-            
-            const phone = '221772241365';
-            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
+            document.getElementById('historyModal').classList.add('hidden');
+            document.getElementById('historyModal').classList.remove('flex');
         }
     </script>
 </body>
