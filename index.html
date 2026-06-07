@@ -9,8 +9,8 @@
     <meta name="apple-mobile-web-app-title" content="Bee'Auto">
     
     <!-- Manifest PWA Inline -->
-    <link rel="manifest" href='data:application/manifest+json,{"name":"Bee%27Auto%20Devis","short_name":"Bee%27Auto","start_url":"./","display":"standalone","background_color":"%23ffffff","theme_color":"%23dc2626","icons":[{"src":"data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Crect%20width%3D%22512%22%20height%3D%22512%22%20rx%3D%2280%22%20fill%3D%22%23dc2626%22%2F%3E%3Ccircle%20cx%3D%22256%22%20cy%3D%22256%22%20r%3D%22140%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%2240%22%2F%3E%3Cpath%20d%3D%22M180%20256h152M256%20180v152M190%20190l132%20132M322%20190L190%20322%22%20stroke%3D%22white%22%20stroke-width%3D%2230%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E","sizes":"512x512"}]}'>
-    <link rel="apple-touch-icon" href='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Crect%20width%3D%22512%22%20height%3D%22512%22%20rx%3D%2280%22%20fill%3D%22%23dc2626%22%2F%3E%3Ccircle%20cx%3D%22256%22%20cy%3D%22256%22%20r%3D%22140%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%2240%22%2F%3E%3Cpath%20d%3D%22M180%20256h152M256%20180v152M190%20190l132%20132M322%20190L190%20322%22%20stroke%3D%22white%22%20stroke-width%3D%2230%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E'>
+    <link rel="manifest" href='data:application/manifest+json,{"name":"Bee%27Auto%20Devis","short_name":"Bee%27Auto","start_url":"./","display":"standalone","background_color":"%23ffffff","theme_color":"%23dc2626","icons":[{"src":"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 512 512%27%3E%3Crect width=%27512%27 height=%27512%27 fill=%27%23dc2626%27/%3E%3C/svg%3E","sizes":"512x512","type":"image/svg+xml","purpose":"any"}]}'>
+    <link rel="apple-touch-icon" href='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Crect%20width%3D%22512%22%20height%3D%22512%22%20fill%3D%22%23dc2626%22/%3E%3C/svg%3E'>
     
     <title>Bee'Auto - Devis</title>
     
@@ -33,12 +33,24 @@
         
         .a4-page {
             width: 210mm;
-            min-height: 297mm;
+            height: 297mm;
             background: white;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             margin: 0 auto;
             position: relative;
             overflow: hidden;
+            page-break-after: always;
+        }
+
+        /* Hidden PDF Container for generation only */
+        #pdf-hidden-container {
+            position: fixed;
+            left: -9999px;
+            top: -9999px;
+            width: 210mm;
+            height: 297mm;
+            z-index: -1;
+            visibility: hidden;
         }
         
         /* Ajustement mobile pour l'aperçu A4 */
@@ -50,7 +62,7 @@
                 display: flex;
                 justify-content: center;
             }
-            .a4-page {
+            #pdf-preview {
                 transform: scale(0.45);
                 transform-origin: top center;
                 margin-bottom: -160mm; /* Compense l'espace vide du scale */
@@ -192,24 +204,24 @@
         <section id="viewPreview" class="view-section w-full md:w-2/3 lg:w-3/4 bg-slate-200/50 overflow-y-auto p-4 md:p-8 flex flex-col items-center">
             
             <!-- Barre d'actions collante -->
-            <div class="w-full max-w-[210mm] mb-4 flex flex-col sm:flex-row gap-3 sticky top-0 z-10">
-                <button onclick="generatePDF()" class="flex-1 bg-red hover:bg-red-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
+            <div class="w-full max-w-[210mm] mb-4 flex flex-col sm:flex-row gap-3 sticky top-0 z-10 bg-slate-200/50 pb-4">
+                <button onclick="generatePDF()" id="btnDownloadPDF" class="flex-1 bg-red hover:bg-red-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-                    1. Télécharger le PDF
+                    <span id="btnDownloadText">📥 Télécharger le PDF</span>
                 </button>
-                <button onclick="shareWhatsApp()" class="flex-1 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-                    2. Envoyer par WhatsApp
+                <button onclick="shareWhatsApp()" id="btnWhatsApp" class="flex-1 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.756-1.653-2.053-.173-.297-.018-.458.13-.606.149-.149.297-.386.446-.58.15-.194.199-.333.298-.555.099-.221.05-.414-.025-.58-.075-.166-.669-1.611-.916-2.206-.243-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.462 0 1.447 1.065 2.859 1.213 3.086.149.226 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.626.712.228 1.36.196 1.871.119.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.288.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.999 1.476c-1.529.928-2.79 2.288-3.643 3.93-.852 1.642-1.299 3.497-1.299 5.37 0 1.873.447 3.728 1.299 5.37.852 1.642 2.114 3.002 3.643 3.93a9.87 9.87 0 004.999 1.476h.004c1.873 0 3.728-.447 5.37-1.299 1.642-.852 3.002-2.114 3.93-3.643.928-1.529 1.476-3.384 1.476-5.257s-.548-3.728-1.476-5.257c-.928-1.529-2.288-2.79-3.93-3.643a9.867 9.867 0 00-5.37-1.299Z" /></svg>
+                    <span>💬 Envoyer par WhatsApp</span>
                 </button>
-                <button onclick="saveDevis()" class="sm:w-auto w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" /></svg>
-                    Sauvegarder
+                <button onclick="saveDevis()" id="btnSave" class="sm:w-auto w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                    💾 Sauvegarder
                 </button>
             </div>
 
             <!-- Zone d'aperçu du document A4 -->
             <div class="a4-wrapper w-full flex justify-center">
-                <div id="pdf-content" class="a4-page p-8 md:p-12 flex flex-col justify-between text-xs md:text-sm font-montserrat">
+                <div id="pdf-preview" class="a4-page p-8 md:p-12 flex flex-col justify-between text-xs md:text-sm font-montserrat">
                     
                     <div>
                         <div class="flex justify-between items-start mb-8 md:mb-10">
@@ -335,6 +347,13 @@
         </section>
     </main>
 
+    <!-- Container caché pour générer le PDF (sans transformations CSS) -->
+    <div id="pdf-hidden-container">
+        <div id="pdf-hidden" class="a4-page p-12 flex flex-col justify-between text-sm font-montserrat">
+            <!-- Contenu PDF sera cloné ici -->
+        </div>
+    </div>
+
     <!-- Modal Historique -->
     <div id="historyModal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
         <div class="bg-white rounded-2xl max-w-md w-full max-h-[80vh] overflow-y-auto shadow-2xl">
@@ -365,7 +384,7 @@
                 document.getElementById('viewPreview').classList.add('active');
                 document.getElementById('btnPreview').classList.add('bg-red', 'text-white', 'shadow-md');
                 document.getElementById('btnPreview').classList.remove('bg-slate-100', 'text-slate-600');
-                updatePreview(); // Rafraîchir l'aperçu quand on change d'onglet
+                updatePreview();
             }
         }
 
@@ -442,68 +461,102 @@
             }
         }
 
-        // 1. GÉNÉRER ET TÉLÉCHARGER LE PDF
+        // ✅ 1. GÉNÉRER ET TÉLÉCHARGER LE PDF (CORRIGÉ)
         function generatePDF() {
-            const element = document.getElementById('pdf-content');
+            const sourceElement = document.getElementById('pdf-preview');
             const clientName = document.getElementById('inputClient').value || 'Client';
             const numeroDevis = document.getElementById('inputNumero').value || 'Devis';
+            
+            // Clone l'élément pour éviter les transformations CSS
+            const clonedElement = sourceElement.cloneNode(true);
+            clonedElement.style.transform = 'none'; // Supprime les transformations
+            clonedElement.style.margin = '0';
+            clonedElement.style.width = '210mm';
+            clonedElement.style.height = '297mm';
             
             const opt = {
                 margin: 0,
                 filename: `Devis_BeeAuto_${numeroDevis}_${clientName.replace(/\s+/g, '_')}.pdf`,
                 image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 3, useCORS: true, backgroundColor: '#ffffff' },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                html2canvas: { 
+                    scale: 2,
+                    useCORS: true,
+                    letterRendering: true,
+                    backgroundColor: '#ffffff',
+                    allowTaint: true
+                },
+                jsPDF: { 
+                    unit: 'mm', 
+                    format: 'a4', 
+                    orientation: 'portrait',
+                    compress: true
+                }
             };
 
-            const btn = event.currentTarget;
+            const btn = document.getElementById('btnDownloadPDF');
             const originalText = btn.innerHTML;
-            btn.innerHTML = `<svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Création...`;
+            btn.innerHTML = `<svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>`;
             btn.disabled = true;
 
-            return html2pdf().set(opt).from(element).save().then(() => {
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-                return true; // Indique que le téléchargement est réussi
-            }).catch(err => {
-                console.error(err);
-                alert("Erreur lors de la génération du PDF.");
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-                return false;
-            });
+            return html2pdf()
+                .set(opt)
+                .from(clonedElement)
+                .save()
+                .then(() => {
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    return true;
+                })
+                .catch(err => {
+                    console.error('Erreur PDF:', err);
+                    alert('❌ Erreur lors de la génération du PDF. Vérifiez la console.');
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    return false;
+                });
         }
 
-        // 2. PARTAGER SUR WHATSAPP (Télécharge d'abord, puis ouvre WhatsApp)
+        // ✅ 2. ENVOYER SUR WHATSAPP (AVEC MESSAGE TEXTE + PDF TÉLÉCHARGÉ)
         async function shareWhatsApp() {
+            // Télécharge d'abord le PDF
             const success = await generatePDF();
+            
             if (success) {
                 const client = document.getElementById('inputClient').value;
                 const numero = document.getElementById('inputNumero').value;
+                const formation = document.getElementById('inputFormation').value;
                 const prix = document.getElementById('inputPrix').value;
                 
-                const message = `Bonjour ${client},\n\nVotre devis N°${numero} pour la formation est prêt.\n\nMontant : ${formatFCFA(prix)} F CFA.\n\n📎 *Veuillez trouver le fichier PDF en pièce jointe de ce message.*\n\nCordialement,\nBee'Auto - Saint-Louis`;
+                // Message pour WhatsApp (texte uniquement, le PDF doit être attaché manuellement)
+                const message = `Bonjour ${client},\n\n📋 *Votre Devis Bee'Auto*\n\n✓ N° Devis : ${numero}\n✓ Formation : ${formation}\n✓ Montant : ${formatFCFA(prix)} F CFA\n\n📎 *Le PDF a été téléchargé sur votre appareil.*\n*Vous pouvez l'attacher dans WhatsApp en cliquant sur l'icône attachement.*\n\n🚗 Merci de choisir Bee'Auto !\n\nCordialement,\nBee'Auto Team`;
                 
-                window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+                const phoneNumber = '221772241365'; // Numéro WhatsApp
+                const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                
+                window.open(whatsappURL, '_blank');
+            } else {
+                alert('❌ Impossible de générer le PDF. Veuillez réessayer.');
             }
         }
 
-        // 3. SAUVEGARDER DANS L'HISTORIQUE
+        // ✅ 3. SAUVEGARDER DANS L'HISTORIQUE
         function saveDevis() {
             const devis = {
                 id: Date.now(),
                 numero: document.getElementById('inputNumero').value,
                 client: document.getElementById('inputClient').value,
+                adresse: document.getElementById('inputAdresseClient').value,
                 date: document.getElementById('inputDate').value,
                 prix: document.getElementById('inputPrix').value,
-                formation: document.getElementById('inputFormation').value
+                formation: document.getElementById('inputFormation').value,
+                tarifType: document.getElementById('tarifEtudiant').checked ? 'etudiant' : 'normal'
             };
 
             let history = JSON.parse(localStorage.getItem('beeauto_devis') || '[]');
             history.unshift(devis);
             localStorage.setItem('beeauto_devis', JSON.stringify(history));
 
-            alert(`✅ Devis N°${devis.numero} sauvegardé dans l'historique de l'application.`);
+            alert(`✅ Devis N°${devis.numero}\nsauvegardé dans l'historique !`);
         }
 
         function showHistory() {
